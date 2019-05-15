@@ -1,0 +1,6 @@
+.vscode
+.serverless
+package.json
+package-lock.json
+dist
+tmp

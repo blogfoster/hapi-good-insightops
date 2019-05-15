@@ -1,0 +1,29 @@
+{
+  "name": "hapi-good-insightops",
+  "version": "0.1.0",
+  "description": "Hapi Good reporter for Rapid7 InsightOps",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blogfoster/hapi-good-insightops.git"
+  },
+  "keywords": [
+    "hapi",
+    "hapijs",
+    "good",
+    "logentries",
+    "insightops"
+  ],
+  "author": "Tim Nolet",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/blogfoster/hapi-good-insightops/issues"
+  },
+  "homepage": "https://github.com/blogfoster/hapi-good-insightops#readme",
+  "dependencies": {
+    "r7insight_node": "^1.8.2"
+  }
+}

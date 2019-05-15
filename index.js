@@ -12,6 +12,18 @@ const defaultLevels = {
   request: 1,
 };
 
+const levelTags = [
+  'debug',
+  'info',
+  'notice',
+  'warning',
+  'err',
+  'error',
+  'crit',
+  'alert',
+  'emerg',
+];
+
 class GoodInsightOps extends Stream.Writable {
   constructor(config) {
     super({ objectMode: true, decodeStrings: true });
@@ -23,9 +35,22 @@ class GoodInsightOps extends Stream.Writable {
     const { event: type } = event;
 
     if (handlers.includes(type) && defaultLevels[type] >= this.minLevel) {
-      this.log(defaultLevels[type], event);
+      const logLevel = event.tags
+        ? GoodInsightOps._mapTagToLevel(event.tags) || defaultLevels[type]
+        : defaultLevels[type];
+      this.log(logLevel, event);
     }
     callback();
+  }
+
+  static _mapTagToLevel(tags) {
+    for (let tag of tags) {
+      if (levelTags.includes(tag)) {
+        // 'error' is a convenience, insightOpts only knows "err"
+        return tag === 'error' ? 'err' : tag;
+      }
+    }
+    return null;
   }
 
   log(lvl, payload) {

@@ -44,6 +44,33 @@ server
   })
 ```
 
+## About log levels
+
+The plugin translates between Hapi.js events like `ops`, `request` & `response` and the InsightOps log levels.
+See the [defaultLevels](https://github.com/blogfoster/hapi-good-insightops/blob/master/index.js#L7) object in the code.
+
+When directly using [Hapi's logging feature](https://hapijs.com/tutorials/logging?lang=en_US), i.e. `server.log()` and
+`request.log()`,  you can add tags to inform the plugin what log level to use. For example:
+
+```javascript
+server.log(['error'], 'something broke!')
+server.log(['debug','tag2'], 'this is a debug statement with another tag')
+server.log(['emerg'], 'no clue what emerg means')
+```
+
+Valid tags are the standard insightOps log levels with `error` added for convenience.
+
+```
+debug
+info
+notice
+warning
+err
+error
+crit
+alert
+emerg
+```
 
 ## License
 

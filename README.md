@@ -3,6 +3,11 @@
 Good Reporter for InsightOps, formerly known as LogEntries. This is uses
 the recent [r7insight_node](https://www.npmjs.com/package/r7insight_node) package.
 
+Was tested with:
+
+- Hapi 16.7.0 and Good 7.3.0
+- Hapi 17.8.1 and Good 8.1.1
+
 ## Installation
 
 ```bash

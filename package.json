@@ -1,6 +1,6 @@
 {
   "name": "hapi-good-insightops",
-  "version": "0.2.1",
+  "version": "0.1.1",
   "description": "Hapi Good reporter for Rapid7 InsightOps",
   "main": "index.js",
   "scripts": {

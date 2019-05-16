@@ -29,6 +29,10 @@ class GoodInsightOps extends Stream.Writable {
     super({ objectMode: true, decodeStrings: true });
     this.logger = new Logger(config);
     this.minLevel = config.minLevel || 1;
+
+    this.once('finish', () => {
+      this.logger.closeConnection();
+    });
   }
 
   _write(event, encoding, callback) {
@@ -54,7 +58,12 @@ class GoodInsightOps extends Stream.Writable {
   }
 
   log(lvl, payload) {
-    this.logger.log(lvl, payload);
+    try {
+      this.logger.log(lvl, payload);
+    } catch (err) {
+      // Lambda plays dirty with sockets, so we ignore this error
+      if (err.message !== 'write after end') throw err;
+    }
   }
 }
 

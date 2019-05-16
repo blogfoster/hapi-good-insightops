@@ -29,10 +29,6 @@ class GoodInsightOps extends Stream.Writable {
     super({ objectMode: true, decodeStrings: true });
     this.logger = new Logger(config);
     this.minLevel = config.minLevel || 1;
-
-    this.once('finish', () => {
-      this.logger.closeConnection();
-    });
   }
 
   _write(event, encoding, callback) {
